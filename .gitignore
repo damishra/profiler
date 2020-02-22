@@ -1,3 +1,6 @@
 # making sure that the bin is excluded
 resources/bin
 resources/bin/*
+
+gen
+gen/*
