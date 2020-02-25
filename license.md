@@ -3,7 +3,7 @@
 _*Version 2.0, January 2004*_ \
 [Apache Licenses](http://www.apache.org/licenses/)
 
-Copyright `2020` `Dishant Mishra` `Winston Chang` `David Kim`
+Copyright `2020` `Dishant Mishra` `Winston Chang`
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 this file except in compliance with the License. You may obtain a copy of the
