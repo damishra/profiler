@@ -22,18 +22,22 @@ get_process_metrics() {
 
 # function to retrieve system metrics.
 get_system_metrics() {
-
+    local disk_space=$(df / | tail -n +2 | awk '{$1=$1}$1' | cut -d ' ' -f 4)
+    local disk_write=$(iostat sda | tail -n +7 | awk '{$1=$1}$1' | cut -d ' ' -f 6)
+    echo "$counter,,,$disk_write,$disk_space" >>system_metrics.csv
 }
 
 # loop to start all processes required for monitoring.
 for process in "${process_array[@]}"; do
-    ./../resources/bin/$process 100.65.64.174 &
-    echo "seconds,%cpu,%mem" >"$process"_metrics.csv
+    ./resources/bin/$process 100.65.64.174 &
+    echo "Time,CPU Utilization,Memory Utilization" >"$process"_metrics.csv
 done
 
+echo "Time,RX Data Rate,TX Data Rate,Disk Writes,Available Disk Capacity" >system_metrics.csv
 counter=0
 while true; do
     sleep 5
     ((counter = counter + 5))
     get_process_metrics
+    get_system_metrics
 done
